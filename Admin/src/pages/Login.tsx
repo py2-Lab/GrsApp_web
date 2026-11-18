@@ -124,6 +124,7 @@ export default function Login() {
               }
               placeholder="Email:"
               autoComplete="username"
+              aria-label="Email atau username"
               className="login-input"
             />
 
@@ -138,6 +139,7 @@ export default function Login() {
                 }
                 placeholder="Password:"
                 autoComplete="current-password"
+                aria-label="Password"
                 className="login-input"
               />
 
@@ -154,9 +156,9 @@ export default function Login() {
                 className="login-toggle-password"
               >
                 {showPassword ? (
-                  <Eye size={20} />
+                  <Eye size={18} />
                 ) : (
-                  <EyeOff size={20} />
+                  <EyeOff size={18} />
                 )}
               </button>
 
@@ -167,8 +169,9 @@ export default function Login() {
               className={`login-info ${
                 message ? "error" : ""
               }`}
+              aria-live="polite"
             >
-              <Info size={16} />
+              <Info size={15} />
 
               <p>
                 {message ||
@@ -184,7 +187,7 @@ export default function Login() {
             >
               {loading ? (
                 <LoaderCircle
-                  size={20}
+                  size={18}
                   className="animate-spin"
                 />
               ) : (
@@ -235,6 +238,7 @@ export default function Login() {
               <button
                 type="button"
                 title="Google Login"
+                aria-label="Login dengan Google"
                 onClick={() =>
                   setMessage(
                     "Google Login belum diaktifkan."
@@ -265,6 +269,7 @@ export default function Login() {
               <button
                 type="button"
                 title="GitHub Login"
+                aria-label="Login dengan GitHub"
                 onClick={() =>
                   setMessage(
                     "GitHub Login belum diaktifkan."
@@ -283,6 +288,7 @@ export default function Login() {
               <button
                 type="button"
                 title="LinkedIn Login"
+                aria-label="Login dengan LinkedIn"
                 onClick={() =>
                   setMessage(
                     "LinkedIn Login belum diaktifkan."
@@ -296,7 +302,7 @@ export default function Login() {
                   />
                   <path
                     fill="#fff"
-                    d="M7.1 9.2h2.2v7.7H7.1V9.2Zm1.1-3.7a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6Zm2.4 3.7h2.1v1h.1c.3-.6 1-1.2-2.1-1.2 2.2 0 2.6 1.4 2.6 3.3v4.6h-2.2v-4.1c0-1-.1-1.8-1.2-1.8s-1.3.9-1.3 1.8v4.1h-2.2V9.2Z"
+                    d="M7.1 9.2h2.2v7.7H7.1V9.2Zm1.1-3.7a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6Zm2.4 3.7h2.1v1h.1c.3-.6 1-1.2 2.1-1.2 2.2 0 2.6 1.4 2.6 3.3v4.6h-2.2v-4.1c0-1-.1-1.8-1.2-1.8s-1.3.9-1.3 1.8v4.1h-2.2V9.2Z"
                   />
                 </svg>
               </button>
