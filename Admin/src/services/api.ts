@@ -15,6 +15,17 @@ export interface LoginResponse {
   user: AdminUser;
 }
 
+export interface RegisterPayload {
+  username: string;
+  email: string;
+  password: string;
+}
+
+export interface RegisterResponse {
+  message: string;
+  status: "pending";
+}
+
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   headers: {
@@ -31,6 +42,21 @@ export const loginAdmin = async (
     {
       identifier,
       password,
+    }
+  );
+
+  return response.data;
+};
+
+export const registerAdmin = async (
+  data: RegisterPayload
+): Promise<RegisterResponse> => {
+  const response = await api.post<RegisterResponse>(
+    "/auth/register",
+    {
+      username: data.username,
+      email: data.email,
+      password: data.password,
     }
   );
 

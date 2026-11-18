@@ -1,6 +1,13 @@
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function RolePage({
   role,
@@ -21,7 +28,11 @@ function RolePage({
   if (user.role !== role) {
     return (
       <Navigate
-        to={user.role === "superadmin" ? "/super-admin" : "/dashboard"}
+        to={
+          user.role === "superadmin"
+            ? "/super-admin"
+            : "/dashboard"
+        }
         replace
       />
     );
@@ -66,6 +77,8 @@ function App() {
 
         <Route path="/login" element={<Login />} />
 
+        <Route path="/register" element={<Register />} />
+
         <Route
           path="/dashboard"
           element={
@@ -83,15 +96,6 @@ function App() {
               role="superadmin"
               title="Super Admin"
             />
-          }
-        />
-
-        <Route
-          path="/register"
-          element={
-            <div className="min-h-screen flex items-center justify-center">
-              Halaman Register akan dibuat berikutnya.
-            </div>
           }
         />
 
