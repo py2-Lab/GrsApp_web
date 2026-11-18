@@ -63,4 +63,65 @@ export const registerAdmin = async (
   return response.data;
 };
 
+
+export interface SuperAdminAccount {
+  _id: string;
+  username: string;
+  email: string;
+  role: "admin";
+  status: "pending" | "approved" | "rejected";
+  createdAt: string;
+}
+
+export const superAdminApi = {
+  // Mengambil semua akun Admin
+  async getAdmins(): Promise<{ users: SuperAdminAccount[] }> {
+    const token = localStorage.getItem("authToken");
+
+    const response = await api.get("/superadmin/admins", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+
+  // Approve atau Reject akun Admin
+  async updateStatus(
+    id: string,
+    status: "approved" | "rejected"
+  ) {
+    const token = localStorage.getItem("authToken");
+
+    const response = await api.patch(
+      `/superadmin/registrations/${id}`,
+      { status },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  },
+
+  // Menghapus akun Admin
+  async deleteAdmin(id: string) {
+    const token = localStorage.getItem("authToken");
+
+    const response = await api.delete(
+      `/superadmin/admins/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  },
+};
+
 export default api;
