@@ -1,0 +1,40 @@
+
+import axios from "axios";
+
+export interface AdminUser {
+  id: string;
+  username: string;
+  email: string;
+  role: "admin" | "superadmin";
+  status: "approved" | "pending" | "rejected";
+}
+
+export interface LoginResponse {
+  message: string;
+  token: string;
+  user: AdminUser;
+}
+
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+export const loginAdmin = async (
+  identifier: string,
+  password: string
+): Promise<LoginResponse> => {
+  const response = await api.post<LoginResponse>(
+    "/auth/login",
+    {
+      identifier,
+      password,
+    }
+  );
+
+  return response.data;
+};
+
+export default api;
